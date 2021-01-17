@@ -1,11 +1,10 @@
-package com.technical.Human;
+package com.technical.eleven.lists;
 
-import java.util.Arrays;
-import java.util.List;
+import com.technical.eleven.main.items.Human;
 
 public class HumanList{
 
-    Human[] humanArray = new Human[0];
+    private Human[] humanArray = new Human[0];
 
     public void addToHumanList(Human human){
         Human[] copy = new Human[humanArray.length + 1];
