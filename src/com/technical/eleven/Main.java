@@ -1,6 +1,5 @@
 package com.technical.eleven;
 
-import com.technical.eleven.controllers.HumanController;
 import com.technical.eleven.menu.*;
 
 

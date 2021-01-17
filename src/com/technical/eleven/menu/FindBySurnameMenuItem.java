@@ -11,7 +11,6 @@ public class FindBySurnameMenuItem extends MenuItem {
     @Override
     public void exec() {
 
-        System.out.println("--------------------------");
         System.out.println(humanController.findBySurname());
     }
 }

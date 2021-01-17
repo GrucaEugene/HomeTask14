@@ -11,27 +11,29 @@ public class HumanController {
    private final HumanUI humanUI = new HumanConsoleUI(new Scanner(System.in));
    private final HumanService service = new HumanService();
 
-   public void addHuman(){
-       service.addHuman(humanUI.readHuman());
+   public void addHuman() {
+      service.addHuman(humanUI.readHuman());
    }
 
-   public void showAllHumans(){
+   public void showAllHumans() {
       humanUI.showHumans(service.getWholeList());
    }
 
-   public void removeFromList(){
+   public void removeFromList() {
       service.removeHumanByNumber(humanUI.getIndexOfHuman());
    }
 
-   public Human findBySurname(){
+   public Human findBySurname() {
+      System.out.println("---------------------------------");
       return service.findBySurname(humanUI.readSurname());
    }
 
-   public Human findByName(){
+   public Human findByName() {
+      System.out.println("---------------------------------");
       return service.findByName(humanUI.readName());
    }
 
-
-
-
 }
+
+
+

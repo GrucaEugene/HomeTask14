@@ -21,7 +21,7 @@ public class Menu {
         while (true) {
             showMenu();
             int choice = getUserChoice();
-            if (isChoiceValid(choice)) {
+            if (isChoiceInvalid(choice)) {
                 System.out.println("Error, try again!");
                 continue;
             }
@@ -30,7 +30,7 @@ public class Menu {
         }
     }
 
-    private boolean isChoiceValid(int choice) {
+    private boolean isChoiceInvalid(int choice) {
         return choice < 0 || choice >= items.length;
     }
 
