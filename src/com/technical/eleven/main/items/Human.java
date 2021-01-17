@@ -1,4 +1,4 @@
-package com.technical.Human;
+package com.technical.eleven.main.items;
 
 import java.util.Objects;
 
