@@ -2,14 +2,14 @@ package com.technical.eleven.controllers;
 
 import com.technical.eleven.main.items.Human;
 import com.technical.eleven.services.HumanService;
+import com.technical.eleven.services.OptionalHumanService;
 import com.technical.eleven.ui.HumanConsoleUI;
 import com.technical.eleven.ui.HumanUI;
-
 import java.util.Scanner;
 
 public class HumanController {
    private final HumanUI humanUI = new HumanConsoleUI(new Scanner(System.in));
-   private final HumanService service = new HumanService();
+   private final HumanService service = new OptionalHumanService();
 
    public void addHuman() {
       service.addHuman(humanUI.readHuman());
