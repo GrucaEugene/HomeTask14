@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Human {
 
     private String name;
-    private String surname;
-    private String patronymic;
+    private final String surname;
+    private final String patronymic;
 
     public Human(String surname, String name, String patronymic){
         this.surname = surname;
@@ -24,18 +24,6 @@ public class Human {
 
     public String getSurname() {
         return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
     }
 
     @Override
