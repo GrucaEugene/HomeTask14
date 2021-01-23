@@ -1,6 +1,8 @@
 package com.technical.eleven.controllers;
 
-import com.technical.eleven.main.items.Human;
+import com.technical.eleven.exceptions.HumanExistsException;
+import com.technical.eleven.exceptions.HumanNotExistsException;
+import com.technical.eleven.exceptions.HumanNotFoundException;
 import com.technical.eleven.services.HumanService;
 import com.technical.eleven.services.OptionalHumanService;
 import com.technical.eleven.ui.HumanConsoleUI;
@@ -12,7 +14,12 @@ public class HumanController {
    private final HumanService service = new OptionalHumanService();
 
    public void addHuman() {
-      service.addHuman(humanUI.readHuman());
+
+      try {
+         service.addHuman(humanUI.readHuman());
+      } catch (HumanExistsException e) {
+         humanUI.showHumanExistsError(e.getHuman());
+      }
    }
 
    public void showAllHumans() {
@@ -20,17 +27,29 @@ public class HumanController {
    }
 
    public void removeFromList() {
-      service.removeHumanByNumber(humanUI.getIndexOfHuman());
+      try {
+         service.removeHumanByNumber(humanUI.getIndexOfHuman());
+      } catch (HumanNotExistsException e) {
+         humanUI.showHumanNotExistsError(e.getNumber());
+      }
    }
 
-   public Human findBySurname() {
+   public void findBySurname() {
       System.out.println("---------------------------------");
-      return service.findBySurname(humanUI.readSurname());
+      try {
+         humanUI.showHuman(service.findBySurname(humanUI.readSurname()));
+      } catch (HumanNotFoundException e) {
+         humanUI.showHumanNotFoundError(e.getSearchValue(), "surname");
+      }
    }
 
-   public Human findByName() {
+   public void findByName() {
       System.out.println("---------------------------------");
-      return service.findByName(humanUI.readName());
+      try {
+         humanUI.showHuman(service.findByName(humanUI.readName()));
+      } catch (HumanNotFoundException e) {
+         humanUI.showHumanNotFoundError(e.getSearchValue(), "name");
+      }
    }
 
 }

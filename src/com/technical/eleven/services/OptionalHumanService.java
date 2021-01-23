@@ -1,6 +1,9 @@
 package com.technical.eleven.services;
 
-import com.technical.eleven.main.items.Human;
+import com.technical.eleven.exceptions.HumanExistsException;
+import com.technical.eleven.exceptions.HumanNotExistsException;
+import com.technical.eleven.exceptions.HumanNotFoundException;
+import com.technical.eleven.items.Human;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,25 +13,23 @@ public class OptionalHumanService implements HumanService {
     private final List<Human> humanList = new LinkedList<>();
 
     @Override
-    public Human findBySurname(String surname) {
-        Human result = null;
+    public Human findBySurname (String surname) throws HumanNotFoundException {
         for (Human human : humanList) {
             if (human.getSurname().equals(surname)) {
-                result = human;
+                return human;
             }
         }
-        return result;
+        throw new HumanNotFoundException(surname);
     }
 
     @Override
-    public Human findByName(String name) {
-        Human result = null;
+    public Human findByName (String name) throws HumanNotFoundException {
         for (Human human : humanList) {
             if (human.getName().equals(name)) {
-                result = human;
+               return human;
             }
         }
-        return result;
+        throw new HumanNotFoundException(name);
     }
 
     @Override
@@ -37,23 +38,21 @@ public class OptionalHumanService implements HumanService {
     }
 
     @Override
-    public void addHuman(Human human) {
+    public void addHuman(Human human) throws HumanExistsException {
 
         for (Human value : humanList) {
             if (value.equals(human)) {
-                System.out.println("This guy already exists");
-                return;
+                throw new HumanExistsException(human);
             }
         }
         humanList.add(human);
     }
 
     @Override
-    public void removeHumanByNumber(int number) {
+    public void removeHumanByNumber(int number) throws HumanNotExistsException {
 
         if (number < 0 || number >= humanList.size()) {
-            System.out.println("Wrong Number, try again!");
-            return;
+            throw new HumanNotExistsException(number);
         }
         humanList.remove(number);
 

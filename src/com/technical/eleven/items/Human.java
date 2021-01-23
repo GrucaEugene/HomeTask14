@@ -1,4 +1,4 @@
-package com.technical.eleven.main.items;
+package com.technical.eleven.items;
 
 import java.util.Objects;
 
@@ -34,7 +34,7 @@ public class Human {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Human)) return false;
+        if (this.getClass() != o.getClass()) return false;
         Human human = (Human) o;
         return Objects.equals(name, human.name) &&
                 Objects.equals(surname, human.surname) &&

@@ -10,7 +10,6 @@ public class FindByNameMenuItem extends MenuItem {
 
     @Override
     public void exec() {
-
-        System.out.println(humanController.findByName());
+       humanController.findByName();
     }
 }

@@ -1,6 +1,6 @@
 package com.technical.eleven.ui;
 
-import com.technical.eleven.main.items.Human;
+import com.technical.eleven.items.Human;
 
 import java.util.List;
 import java.util.Scanner;
@@ -8,19 +8,19 @@ import java.util.Scanner;
 public class HumanConsoleUI implements HumanUI {
     private final Scanner sc;
 
-    public HumanConsoleUI(Scanner sc){
+    public HumanConsoleUI(Scanner sc) {
         this.sc = sc;
     }
 
     @Override
     public String readSurname() {
-        System.out.println("Введите фамилию");
+        System.out.println("Enter a surname");
         return sc.nextLine();
     }
 
     @Override
     public String readName() {
-        System.out.println("Введите имя");
+        System.out.println("Enter a name");
         return sc.nextLine();
     }
 
@@ -40,17 +40,37 @@ public class HumanConsoleUI implements HumanUI {
 
     @Override
     public int getIndexOfHuman() {
-        System.out.println("Введите номер человека");
+        System.out.println("Enter the number of Human");
         int number = sc.nextInt();
-         return number - 1;
+        return number - 1;
 
     }
 
     @Override
-    public void showHumans(List<Human> humans){
+    public void showHumans(List<Human> humans) {
         for (int i = 0; i < humans.size(); i++) {
-            System.out.println(i+1+". "+humans.get(i));
+            System.out.println(i + 1 + ". " + humans.get(i));
         }
+    }
+
+    @Override
+    public void showHumanExistsError(Human human) {
+        System.err.println("Human: " + human + " already exists!!!");
+    }
+
+    @Override
+    public void showHumanNotExistsError(int number) {
+        System.err.println("Human with number " + (number + 1) + " doesn't exist!");
+    }
+
+    @Override
+    public void showHumanNotFoundError(String searchValue, String searchParam) {
+        System.err.println("Human with " + searchParam + " \"" + searchValue + "\" doesn't exist!");
+    }
+
+    @Override
+    public void showHuman(Human human) {
+        System.out.println(human);
     }
 
 }

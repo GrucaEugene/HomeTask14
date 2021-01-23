@@ -2,6 +2,7 @@ package com.technical.eleven.menu;
 
 import com.technical.eleven.controllers.HumanController;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -20,7 +21,15 @@ public class Menu {
     public void run() {
         while (true) {
             showMenu();
-            int choice = getUserChoice();
+            int choice = 0;
+            try {
+                choice = getUserChoice();
+            } catch (InputMismatchException e) {
+                System.err.println("Input should be a number!");
+                sc.nextLine();
+                continue;
+            }
+
             if (isChoiceInvalid(choice)) {
                 System.out.println("Error, try again!");
                 continue;
@@ -36,7 +45,7 @@ public class Menu {
 
 
     private int getUserChoice() {
-        System.out.println("Chose Menu item");
+        System.out.println("Choose Menu item");
         int choice = sc.nextInt() - 1;
         sc.nextLine();
         return choice;
